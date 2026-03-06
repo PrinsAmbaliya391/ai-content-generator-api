@@ -324,3 +324,5 @@ class ContentService:
         )
 
         return {"message": "deleted"}
+    
+content_service=ContentService()

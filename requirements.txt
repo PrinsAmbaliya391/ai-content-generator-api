@@ -6,3 +6,4 @@ google-generativeai
 google-genai
 pydantic
 python-jose[cryptography]
+pytz

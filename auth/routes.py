@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from auth.schemas import SignupRequest, LoginRequest, VerifyOTP, ChangePasswordRequest
-from auth.services import AuthService
+from auth.services import auth_service as AuthService
+
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 

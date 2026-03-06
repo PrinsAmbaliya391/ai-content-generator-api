@@ -289,7 +289,7 @@ Support Team
 
 
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 6000
 REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 
@@ -452,3 +452,6 @@ class AuthService:
             "refresh_token": refresh_token,
             "user": {"username": username, "email": data.email},
         }
+
+
+auth_service=AuthService()
