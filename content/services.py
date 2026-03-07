@@ -6,9 +6,62 @@ from core.database import supabase
 from typing import List
 import asyncio
 import time
+import fitz 
+import docx 
+import io
+from fastapi import UploadFile
+from typing import Optional
+from langchain_community.document_loaders import PyPDFLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_community.vectorstores import Chroma
+
 
 client = genai.Client(api_key=GEMINI_KEY)
 
+persist_directory = "chroma_db"
+
+def create_vector_store_from_text(text):
+
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000,
+        chunk_overlap=200
+    )
+
+    docs = text_splitter.create_documents([text])
+
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/embedding-001",
+        google_api_key=os.getenv("GEMINI_KEY")
+    )
+
+    vectordb = Chroma.from_documents(
+        documents=docs,
+        embedding=embeddings,
+        persist_directory=persist_directory
+    )
+
+    vectordb.persist()
+
+    return vectordb
+
+def search_vector(query):
+
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/embedding-001",
+        google_api_key=os.getenv("GEMINI_KEY")
+    )
+
+    vectordb = Chroma(
+        persist_directory=persist_directory,
+        embedding_function=embeddings
+    )
+
+    docs = vectordb.similarity_search(query, k=4)
+
+    context = "\n".join([doc.page_content for doc in docs])
+
+    return context
 
 def count_words(text: str) -> int:
     return len(text.split())
@@ -36,9 +89,8 @@ def generate_large_content(topic, word_count, tone, language):
 
     for i, section in enumerate(sections):
         prompt_topic = f"""
-        topic: {topic}
-        current focus: {section}
-        context (continue exactly from here): "...{previous_context[-1000:]}"
+        Topic/Goal: {topic} (Use provided Reference Documents if applicable)
+        Current focus: {section}
         """
 
         part = generate_with_word_control(
@@ -76,21 +128,40 @@ def generate_with_word_control(topic_prompt, word_count, tone, language):
 
 
 def generate_content(prompt_input, word_count, tone, language):
+    is_rag = "<document>" in prompt_input
+    
+    persona = "You are a helpful assistant." if is_rag else "you are a professional academic writer."
+    
+    constraint = "Use ONLY the provided document to answer. Do not add outside knowledge." if is_rag else "expand the explanation logically."
+
     prompt = f"""
-role: professional academic writer.
-task: {prompt_input}
-tone: {tone}
-language: {language}
+{persona}
+
+task:
+{prompt_input}
+
+write a detailed explanation with examples and context.
+the response must be close to the target word count.
 
 rules:
-- target: {word_count} words.
-- style: everything must be lowercase. no capital letters.
-- no headers. no titles. no ##. no section numbers.
-- start immediately with the first word 'the' (if applicable).
-- do not use introductory fluff or greetings.
+{constraint}
+- strictly rely on the document when answering
+- do not invent information
+- if the document does not contain the answer say: information not found in document
+
+writing settings:
+tone: {tone}
+language: {language}
+target words: {word_count}
+
+style rules:
+- everything must be lowercase
+- no headers
+- no titles
+- start directly with the answer
 """
 
-    generate_config = GenerateContentConfig(temperature=0.8)
+    generate_config = GenerateContentConfig(temperature=0.7)
 
     for attempt in range(3):
         try:
@@ -105,7 +176,6 @@ rules:
 
         except Exception:
             time.sleep(2)
-            continue
 
     return ""
 
@@ -165,11 +235,36 @@ def get_generation(generation_id, user_uuid):
     return res.data[0]
 
 
+def extract_text_from_file(file: UploadFile):
+
+    file.file.seek(0)
+
+    content = ""
+    ext = file.filename.split('.')[-1].lower()
+
+    data = file.file.read()
+
+    if ext == "txt":
+        content = data.decode("utf-8", errors="ignore")
+
+    elif ext == "pdf":
+        doc = fitz.open(stream=data, filetype="pdf")
+        for page in doc:
+            content += page.get_text("text")
+
+    elif ext in ["docx", "doc"]:
+        document = docx.Document(io.BytesIO(data))
+        for para in document.paragraphs:
+            content += para.text + "\n"
+
+    return content
+
+
 class ContentService:
 
     @staticmethod
-    async def generate(req, user_uuid: str):
-
+    async def generate(req, user_uuid: str, file: Optional[UploadFile] = None):
+        
         user_res = await asyncio.to_thread(
             lambda: supabase.table("users")
             .select("is_verified")
@@ -180,19 +275,61 @@ class ContentService:
         if not user_res.data or not user_res.data[0]["is_verified"]:
             raise HTTPException(status_code=401, detail="verify email first")
 
+        doc_context = ""
+
+        if file:
+
+            doc_context = await asyncio.to_thread(extract_text_from_file, file)
+
+            await asyncio.to_thread(create_vector_store_from_text, doc_context)
+
+            rag_context = await asyncio.to_thread(search_vector, req.topic)
+
+            task_input = f"""
+        answer the question using ONLY the document.
+
+        <context>
+        {rag_context}
+        </context>
+
+        <question>
+        {req.topic}
+        </question>
+
+        rules:
+        - only use document information
+        - do not use outside knowledge
+        - if answer not found say: information not found in document
+        """
+
+        else:
+
+            task_input = f"""
+        You are a professional academic writer.
+
+        QUESTION:
+        {req.topic}
+
+        Write a professional explanation.
+        """
+
         try:
-            if req.word_count > 1500:
+
+            if req.word_count > 1500 and not doc_context:
+
                 result_text = await asyncio.to_thread(
                     generate_large_content,
-                    req.topic,
+                    task_input,
                     req.word_count,
                     req.tone,
                     req.language
                 )
+
             else:
+
                 result_text = await asyncio.to_thread(
-                    generate_content,
-                    f"write about {req.topic}",
+                    generate_with_word_control,
+                    task_input,
                     req.word_count,
                     req.tone,
                     req.language

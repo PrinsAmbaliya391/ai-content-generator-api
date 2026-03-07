@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, File, Form, UploadFile
 from content.schemas import (
     ContentRequest,
     UpdateRequest,
@@ -7,15 +7,24 @@ from content.schemas import (
 )
 from content.services import ContentService
 from core.security import get_current_user
+from typing import Optional
 
 router = APIRouter(prefix="/content", tags=["Content"])
 
 
 @router.post("/generate")
 async def create_content(
-    req: ContentRequest, user_uuid: str = Depends(get_current_user)
+    topic: str = Form(...),
+    word_count: int = Form(...),
+    tone: str = Form(...),
+    language: str = Form(...),
+    file: Optional[UploadFile] = File(None),
+    user_uuid: str = Depends(get_current_user)
 ):
-    return await ContentService.generate(req, user_uuid)
+
+    req = ContentRequest(topic=topic, word_count=word_count, tone=tone, language=language)
+
+    return await ContentService.generate(req, user_uuid, file)
 
 
 @router.get("/history")
