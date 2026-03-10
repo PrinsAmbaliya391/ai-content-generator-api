@@ -2,6 +2,7 @@ fastapi
 uvicorn[standard]
 supabase
 python-dotenv
+<<<<<<< HEAD
 google-generativeai
 pydantic
 python-jose[cryptography]
@@ -25,3 +26,21 @@ pypdf
 pandas
 scikit-learn
 joblib
+=======
+google-genai
+pydantic
+python-jose[cryptography]
+pytz
+PyPDF2
+python-docx
+passlib[bcrypt]
+python-multipart
+pymupdf
+docx
+langchain
+langchain-google-genai
+chromadb
+tiktoken
+sentence-transformers
+pypdf
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 Chat Service Module.
 
@@ -10,6 +11,9 @@ This module handles real-time communication via WebSockets, including:
 
 from fastapi import WebSocket, WebSocketDisconnect
 from core.logger import logger
+=======
+from fastapi import WebSocket, WebSocketDisconnect
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 from jose import jwt
 from core.config import SECRET_KEY, ALGORITHM, GEMINI_KEY
 from google import genai
@@ -20,14 +24,18 @@ import pytz
 
 
 class ChatService:
+<<<<<<< HEAD
     """
     Service class to manage WebSocket chat sessions and AI interactions.
     """
 
+=======
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
     client = genai.Client(api_key=GEMINI_KEY)
 
     @staticmethod
     async def get_user_from_token(token: str):
+<<<<<<< HEAD
         """
         Decodes a JWT token to retrieve the user's UUID.
 
@@ -37,21 +45,31 @@ class ChatService:
         Returns:
             str: The user UUID if valid, None otherwise.
         """
+=======
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
             if payload.get("type") != "access":
+<<<<<<< HEAD
                 logger.bind(is_business=True).warning("Invalid token type provided for WebSocket auth.")
+=======
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                 return None
 
             return payload.get("sub")
 
+<<<<<<< HEAD
         except Exception as e:
             logger.bind(is_business=True).error(f"Token decoding failed: {e}")
+=======
+        except Exception:
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
             return None
 
     @staticmethod
     async def handle_websocket(websocket: WebSocket):
+<<<<<<< HEAD
         """
         Handles a general-purpose chat WebSocket connection.
 
@@ -62,6 +80,11 @@ class ChatService:
 
         if not auth_header:
             logger.bind(is_business=True).warning("WebSocket connection attempt without authorization header.")
+=======
+        auth_header = websocket.headers.get("authorization")
+
+        if not auth_header:
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
             await websocket.accept()
             await websocket.close()
             return
@@ -69,7 +92,10 @@ class ChatService:
         try:
             token = auth_header.split(" ")[1]
         except Exception:
+<<<<<<< HEAD
             logger.bind(is_business=True).error("Malformed authorization header in WebSocket connection.")
+=======
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
             await websocket.accept()
             await websocket.close()
             return
@@ -79,20 +105,30 @@ class ChatService:
         user_uuid = await ChatService.get_user_from_token(token)
 
         if not user_uuid:
+<<<<<<< HEAD
             logger.bind(is_business=True).warning("Unauthorized WebSocket connection attempt.")
+=======
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
             await websocket.close()
             return
 
         session_id = str(uuid.uuid4())
         ist = pytz.timezone("Asia/Kolkata")
+<<<<<<< HEAD
         logger.bind(is_business=True).info(f"New chat session started: {session_id} for user: {user_uuid}")
+=======
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
         try:
             while True:
                 message = await websocket.receive_text()
+<<<<<<< HEAD
                 logger.bind(is_business=True).info(f"Message received in session {session_id}")
 
                 # Fetch existing chat history for context
+=======
+
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                 existing = (
                     supabase.table("chat")
                     .select("chat")
@@ -101,8 +137,15 @@ class ChatService:
                 )
 
                 history_text = ""
+<<<<<<< HEAD
                 if existing.data:
                     chats = existing.data[0]["chat"] or []
+=======
+
+                if existing.data:
+                    chats = existing.data[0]["chat"] or []
+
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                     for msg in chats:
                         role = msg.get("role")
                         content = msg.get("content")
@@ -124,28 +167,48 @@ Assistant:
                         contents=prompt,
                     )
                     ai_text = response.text if response.text else "No AI response"
+<<<<<<< HEAD
                 except Exception as e:
                     logger.bind(is_business=True).error(f"Gemini API error in chat: {e}")
+=======
+
+                except Exception:
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                     ai_text = "AI service temporarily unavailable"
 
                 try:
                     current_time = datetime.now(ist).isoformat()
+<<<<<<< HEAD
                     new_chat_entries = [
+=======
+
+                    new_chat = [
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                         {"role": "user", "content": message, "time": current_time},
                         {"role": "assistant", "content": ai_text, "time": current_time},
                     ]
 
                     if existing.data:
                         old_chat = existing.data[0]["chat"] or []
+<<<<<<< HEAD
                         updated_chat = old_chat + new_chat_entries
                         supabase.table("chat").update({"chat": updated_chat}).eq(
                             "session", session_id
                         ).execute()
+=======
+                        updated_chat = old_chat + new_chat
+
+                        supabase.table("chat").update({"chat": updated_chat}).eq(
+                            "session", session_id
+                        ).execute()
+
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                     else:
                         supabase.table("chat").insert(
                             {
                                 "user_uuid": user_uuid,
                                 "session": session_id,
+<<<<<<< HEAD
                                 "chat": new_chat_entries,
                                 "status": "generate_content",
                             }
@@ -154,21 +217,40 @@ Assistant:
                     logger.bind(is_business=True).error(
                         f"Database update failed for session {session_id}: {e}"
                     )
+=======
+                                "chat": new_chat,
+                                "status": "generate_content",
+                            }
+                        ).execute()
+
+                except Exception:
+                    pass
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
                 await websocket.send_text(ai_text)
 
         except WebSocketDisconnect:
+<<<<<<< HEAD
             logger.bind(is_business=True).info(f"Client disconnected from session: {session_id}")
         except Exception as e:
             logger.bind(is_business=True).error(f"Unexpected error in WebSocket handler: {e}")
+=======
+            print("Client disconnected")
+
+        except Exception:
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
             await websocket.close()
 
     @staticmethod
     async def system_chat(websocket: WebSocket):
+<<<<<<< HEAD
         """
         Handles system-specific support chat WebSocket connection.
         Only answers queries related to system features.
         """
+=======
+
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         auth_header = websocket.headers.get("authorization")
 
         if not auth_header:
@@ -193,7 +275,10 @@ Assistant:
 
         session_id = str(uuid.uuid4())
         ist = pytz.timezone("Asia/Kolkata")
+<<<<<<< HEAD
         logger.bind(is_business=True).info(f"New system chat session started: {session_id}")
+=======
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
         try:
             while True:
@@ -208,10 +293,20 @@ Assistant:
                 )
 
                 history_text = ""
+<<<<<<< HEAD
                 if existing.data:
                     for msg in existing.data[0]["chat"]:
                         role = "User" if msg.get("role") == "user" else "Assistant"
                         history_text += f"{role}: {msg['content']}\n"
+=======
+
+                if existing.data:
+                    for msg in existing.data[0]["chat"]:
+                        if msg.get("role") == "user":
+                            history_text += f"User: {msg['content']}\n"
+                        elif msg.get("role") == "assistant":
+                            history_text += f"Assistant: {msg['content']}\n"
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
                 system_prompt = f"""
 You are an AI assistant for an AI Content Generator system.
@@ -253,21 +348,33 @@ Assistant Response:
 
                     ai_text = response.text if response.text else "No response"
 
+<<<<<<< HEAD
                 except Exception as e:
                     logger.bind(is_business=True).error(f"Gemini API error in system chat: {e}")
+=======
+                except Exception:
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                     ai_text = "AI service temporarily unavailable"
 
                 try:
                     current_time = datetime.now(ist).isoformat()
 
+<<<<<<< HEAD
                     new_chat_entries = [
+=======
+                    new_chat = [
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                         {"role": "user", "content": message, "time": current_time},
                         {"role": "assistant", "content": ai_text, "time": current_time},
                     ]
 
                     if existing.data:
                         old_chat = existing.data[0]["chat"] or []
+<<<<<<< HEAD
                         updated_chat = old_chat + new_chat_entries
+=======
+                        updated_chat = old_chat + new_chat
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
                         supabase.table("chat").update({"chat": updated_chat}).eq(
                             "session", session_id
@@ -278,27 +385,43 @@ Assistant Response:
                             {
                                 "user_uuid": user_uuid,
                                 "session": session_id,
+<<<<<<< HEAD
                                 "chat": new_chat_entries,
+=======
+                                "chat": new_chat,
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                                 "status": "system_content",
                             }
                         ).execute()
 
+<<<<<<< HEAD
                 except Exception as e:
                     logger.bind(is_business=True).error(
                         f"Database update failed for session {session_id}: {e}"
                     )
+=======
+                except Exception:
+                    pass
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
                 await websocket.send_text(ai_text)
 
         except WebSocketDisconnect:
+<<<<<<< HEAD
             logger.bind(is_business=True).info(f"System chat client disconnected: {session_id}")
 
         except Exception as e:
             logger.bind(is_business=True).error(f"Unexpected error in system chat: {e}")
+=======
+            pass
+
+        except Exception:
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
             await websocket.close()
 
     @staticmethod
     async def websocket_continue(websocket: WebSocket, session_id: str):
+<<<<<<< HEAD
         """
         Continues an existing chat session.
         """
@@ -306,6 +429,12 @@ Assistant Response:
 
         ist = pytz.timezone("Asia/Kolkata")
         logger.bind(is_business=True).info(f"Resuming chat session: {session_id}")
+=======
+
+        await websocket.accept()
+
+        ist = pytz.timezone("Asia/Kolkata")
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
         try:
             while True:
@@ -319,14 +448,18 @@ Assistant Response:
                 )
 
                 if not existing.data:
+<<<<<<< HEAD
                     logger.bind(is_business=True).warning(
                         f"Attempted to resume non-existent session: {session_id}"
                     )
+=======
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                     await websocket.send_text("session not found")
                     return
 
                 chats = existing.data[0]["chat"] or []
 
+<<<<<<< HEAD
                 history_text = "\n".join(
                     [f"{m.get('role')}: {m.get('content')}" for m in chats]
                 )
@@ -342,22 +475,54 @@ Assistant:
                 try:
                     response = await ChatService.client.aio.models.generate_content(
                         model="gemini-2.0-flash-lite",
+=======
+                history_text = ""
+                for msg in chats:
+                    role = msg.get("role")
+                    content = msg.get("content")
+                    history_text += f"{role}: {content}\n"
+
+                prompt = f"""
+    Conversation history:
+    {history_text}
+
+    User: {message}
+    Assistant:
+    """
+
+                try:
+                    response = await ChatService.client.aio.models.generate_content(
+                        model="gemini-2.5-flash-lite",
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                         contents=prompt,
                     )
 
                     ai_text = response.text if response.text else "No response"
 
+<<<<<<< HEAD
                 except Exception as e:
                     logger.bind(is_business=True).error(f"Gemini API error during session resumption: {e}")
+=======
+                except Exception:
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                     ai_text = "AI service temporarily unavailable"
 
                 current_time = datetime.now(ist).isoformat()
 
+<<<<<<< HEAD
                 updated_chat = chats + [
+=======
+                new_chat = [
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                     {"role": "user", "content": message, "time": current_time},
                     {"role": "assistant", "content": ai_text, "time": current_time},
                 ]
 
+<<<<<<< HEAD
+=======
+                updated_chat = chats + new_chat
+
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                 supabase.table("chat").update({"chat": updated_chat}).eq(
                     "session", session_id
                 ).execute()
@@ -365,6 +530,7 @@ Assistant:
                 await websocket.send_text(ai_text)
 
         except WebSocketDisconnect:
+<<<<<<< HEAD
             logger.bind(is_business=True).info(f"Session resumption client disconnected: {session_id}")
 
         except Exception as e:
@@ -378,19 +544,33 @@ Assistant:
         """
         await websocket.accept()
         logger.bind(is_business=True).info(f"Request to delete chat session: {session_id}")
+=======
+            pass
+
+    @staticmethod
+    async def websocket_delete(websocket: WebSocket, session_id: str):
+
+        await websocket.accept()
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
         existing = (
             supabase.table("chat").select("session").eq("session", session_id).execute()
         )
 
         if not existing.data:
+<<<<<<< HEAD
             logger.bind(is_business=True).warning(f"Delete requested for non-existent session: {session_id}")
+=======
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
             await websocket.send_text("session not found")
             await websocket.close()
             return
 
         supabase.table("chat").delete().eq("session", session_id).execute()
+<<<<<<< HEAD
         logger.bind(is_business=True).info(f"Chat session {session_id} deleted successfully.")
+=======
+>>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
         await websocket.send_text("chat deleted successfully")
         await websocket.close()
