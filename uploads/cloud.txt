@@ -1,0 +1,3 @@
+Cloud computing provides scalable computing resources through the internet.
+Companies can store data and run applications without maintaining physical servers.
+Popular cloud providers include AWS, Google Cloud, and Microsoft Azure.

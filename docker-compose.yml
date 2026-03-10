@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  # Main FastAPI Service
+  fastapi-app:
+    build: .
+    container_name: fastapi-ai-api
+    ports:
+      - "8000:8000" # Maps local port 8000 to container port 8000
+    volumes:
+      - .:/app # Mounts local directory for live development
+    restart: always
+    env_file:
+      - .env # Loads environment variables
