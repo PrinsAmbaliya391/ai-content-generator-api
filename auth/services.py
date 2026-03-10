@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 Authentication Service Module.
 
@@ -6,8 +5,6 @@ This module handles user authentication flows including signup, login, OTP verif
 password management, and email notifications.
 """
 
-=======
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 import smtplib
 import random
 import ssl
@@ -15,7 +12,6 @@ from email.message import EmailMessage
 from fastapi import HTTPException
 from datetime import datetime, timedelta, timezone
 from html import escape
-<<<<<<< HEAD
 from core.logger import logger
 from core.config import SMTP_EMAIL, SMTP_PASSWORD, SMTP_HOST, SMTP_PORT, SECRET_KEY
 from core.database import supabase
@@ -38,20 +34,6 @@ def validate_password_strength(password: str):
     Raises:
         HTTPException: If the password fails any complexity checks.
     """
-=======
-import logging
-from core.config import SMTP_EMAIL, SMTP_PASSWORD, SMTP_HOST, SMTP_PORT, SECRET_KEY
-from core.database import supabase
-import re
-from jose import JWTError, jwt
-import uuid
-import asyncio
-
-logger = logging.getLogger(__name__)
-
-
-def validate_password_strength(password: str):
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
     if len(password) < 8:
         raise HTTPException(
             status_code=400, detail="Password must be at least 8 characters long"
@@ -81,7 +63,6 @@ def validate_password_strength(password: str):
         )
 
 
-<<<<<<< HEAD
 def send_otp(receiver: str) -> str:
     """
     Generates and sends a 6-digit OTP to the specified email.
@@ -92,9 +73,6 @@ def send_otp(receiver: str) -> str:
     Returns:
         str: The generated OTP if successful, None otherwise.
     """
-=======
-def send_otp(receiver):
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
     otp = str(random.randint(100000, 999999))
 
     msg = EmailMessage()
@@ -110,17 +88,12 @@ def send_otp(receiver):
             smtp.send_message(msg)
         return otp
     except Exception as e:
-<<<<<<< HEAD
         logger.bind(is_business=True).error(f"Failed to send OTP email: {e}")
-=======
-        print("Email error:", e)
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         return None
 
 
 def send_verification_success_email(received: str, username: str) -> bool:
     """
-<<<<<<< HEAD
     Sends a welcome email after successful account verification.
 
     Args:
@@ -132,14 +105,6 @@ def send_verification_success_email(received: str, username: str) -> bool:
     """
     if not all([SMTP_HOST, SMTP_EMAIL, SMTP_PASSWORD]):
         logger.bind(is_business=True).error("SMTP configuration is missing.")
-=======
-    Sends a welcome email with HTML + plain text fallback.
-    Returns True if successful, otherwise False.
-    """
-
-    if not all([SMTP_HOST, SMTP_EMAIL, SMTP_PASSWORD]):
-        logger.error("SMTP configuration is missing.")
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         return False
 
     safe_username = escape(username)
@@ -164,16 +129,9 @@ Support Team
 """
     )
 
-<<<<<<< HEAD
     # HTML content for premium look
     html_content = f"""
     <html>
-=======
-    # HTML version
-    msg.add_alternative(
-        f"""\
-<html>
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 <body style="margin:0;padding:0;font-family:Arial,sans-serif;background:#f4f6f8;">
   <table width="100%" cellpadding="0" cellspacing="0" style="padding:20px 0;">
     <tr>
@@ -222,7 +180,6 @@ Support Team
       </td>
     </tr>
   </table>
-<<<<<<< HEAD
     </body>
     </html>
     """
@@ -238,40 +195,10 @@ Support Team
     except Exception as e:
         logger.bind(is_business=True).error(f"Welcome email error: {e}")
         return False
-=======
-</body>
-</html>
-""",
-        subtype="html",
-    )
-
-    try:
-        context = ssl.create_default_context()
-
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-            server.ehlo()
-            server.starttls(context=context)
-            server.ehlo()
-            server.login(SMTP_EMAIL, SMTP_PASSWORD)
-            server.send_message(msg)
-
-        logger.info("Welcome email sent successfully to %s", received)
-        return True
-
-    except smtplib.SMTPAuthenticationError:
-        logger.exception("SMTP authentication failed.")
-    except smtplib.SMTPException:
-        logger.exception("SMTP error occurred.")
-    except Exception:
-        logger.exception("Unexpected error while sending email.")
-
-    return False
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
 
 def send_verification_success_login_email(received: str, username: str) -> bool:
     """
-<<<<<<< HEAD
     Sends a notification email after a successful login.
 
     Args:
@@ -282,14 +209,6 @@ def send_verification_success_login_email(received: str, username: str) -> bool:
         bool: True if successful.
     """
     safe_username = escape(username)
-=======
-    Sends a login success notification email (HTML + plain text fallback).
-    Returns True if successful, otherwise False.
-    """
-
-    safe_username = escape(username)
-
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
     msg = EmailMessage()
     msg["Subject"] = "Login Successful! 🔐"
     msg["From"] = SMTP_EMAIL
@@ -370,7 +289,6 @@ Support Team
 
     try:
         context = ssl.create_default_context()
-<<<<<<< HEAD
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as smtp:
             smtp.starttls(context=context)
             smtp.login(SMTP_EMAIL, SMTP_PASSWORD)
@@ -379,27 +297,6 @@ Support Team
     except Exception as e:
         logger.bind(is_business=True).error(f"Login notification error: {e}")
         return False
-=======
-
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as smtp:
-            smtp.ehlo()
-            smtp.starttls(context=context)
-            smtp.ehlo()
-            smtp.login(SMTP_EMAIL, SMTP_PASSWORD)
-            smtp.send_message(msg)
-
-        logger.info("Login success email sent to %s", received)
-        return True
-
-    except smtplib.SMTPAuthenticationError:
-        logger.exception("SMTP authentication failed.")
-    except smtplib.SMTPException:
-        logger.exception("SMTP error occurred.")
-    except Exception:
-        logger.exception("Unexpected error while sending login email.")
-
-    return False
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
 
 ALGORITHM = "HS256"
@@ -407,7 +304,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 6000
 REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 
-<<<<<<< HEAD
 def create_access_token(data: dict) -> str:
     """
     Generates a JWT access token.
@@ -418,16 +314,12 @@ def create_access_token(data: dict) -> str:
     Returns:
         str: The encoded JWT.
     """
-=======
-def create_access_token(data: dict):
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
     to_encode = data.copy()
     expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire, "type": "access"})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-<<<<<<< HEAD
 def create_refresh_token(data: dict) -> str:
     """
     Generates a JWT refresh token.
@@ -438,9 +330,6 @@ def create_refresh_token(data: dict) -> str:
     Returns:
         str: The encoded JWT.
     """
-=======
-def create_refresh_token(data: dict):
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
     to_encode = data.copy()
     expire = datetime.now(timezone.utc) + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
     to_encode.update({"exp": expire, "type": "refresh"})
@@ -448,7 +337,6 @@ def create_refresh_token(data: dict):
 
 
 class AuthService:
-<<<<<<< HEAD
     """
     Service class handling the business logic for authentication.
     """
@@ -461,11 +349,6 @@ class AuthService:
         Args:
             user (SignupRequest): The user registration details.
         """
-=======
-
-    @staticmethod
-    async def signup(user):
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         validate_password_strength(user.password)
 
         existing = await asyncio.to_thread(
@@ -481,16 +364,11 @@ class AuthService:
         otp = await asyncio.to_thread(send_otp, user.email)
 
         if not otp:
-<<<<<<< HEAD
             raise HTTPException(
                 status_code=500, detail="Failed to send verification email"
             )
 
         hashed_password = pwd_context.hash(user.password)
-=======
-            raise HTTPException(status_code=500, detail="Failed to send email")
-
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         new_uuid = str(uuid.uuid4())
 
         await asyncio.to_thread(
@@ -500,11 +378,7 @@ class AuthService:
                     "uuid": new_uuid,
                     "username": user.username,
                     "email": user.email,
-<<<<<<< HEAD
                     "password": hashed_password,
-=======
-                    "password": user.password,
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
                     "otp": otp,
                     "is_verified": False,
                 }
@@ -516,16 +390,12 @@ class AuthService:
 
     @staticmethod
     async def verify_otp(data):
-<<<<<<< HEAD
         """
         Verifies the OTP provided during signup and activates the user account.
 
         Args:
             data (VerifyOTP): The email and OTP to verify.
         """
-=======
-
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         response = await asyncio.to_thread(
             lambda: supabase.table("users")
             .select("*")
@@ -547,26 +417,18 @@ class AuthService:
         )
 
         username = response.data[0]["username"]
-<<<<<<< HEAD
-=======
-
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         await asyncio.to_thread(send_verification_success_email, data.email, username)
 
         return {"message": "Verification successful"}
 
     @staticmethod
     async def login(user):
-<<<<<<< HEAD
         """
         Authenticates a user and sends a login OTP if credentials are valid.
 
         Args:
             user (LoginRequest): Login credentials.
         """
-=======
-
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         response = await asyncio.to_thread(
             lambda: supabase.table("users")
             .select("*")
@@ -579,11 +441,7 @@ class AuthService:
 
         db_user = response.data[0]
 
-<<<<<<< HEAD
         if not pwd_context.verify(user.password, db_user["password"]):
-=======
-        if db_user["password"] != user.password:
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
             raise HTTPException(status_code=401, detail="Invalid email or password")
 
         if not db_user["is_verified"]:
@@ -594,11 +452,7 @@ class AuthService:
         otp = await asyncio.to_thread(send_otp, user.email)
 
         if not otp:
-<<<<<<< HEAD
             raise HTTPException(status_code=500, detail="Failed to send login OTP")
-=======
-            raise HTTPException(status_code=500, detail="Failed to send email")
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
 
         await asyncio.to_thread(
             lambda: supabase.table("users")
@@ -611,16 +465,12 @@ class AuthService:
 
     @staticmethod
     async def verify_login_otp(data):
-<<<<<<< HEAD
         """
         Verifies the login OTP and returns JWT tokens.
 
         Args:
             data (VerifyOTP): Login verification details.
         """
-=======
-
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         response = await asyncio.to_thread(
             lambda: supabase.table("users")
             .select("uuid, otp, username, updated_at, email")
@@ -642,18 +492,10 @@ class AuthService:
             raise HTTPException(status_code=400, detail="OTP expired")
 
         user_uuid = str(response.data[0]["uuid"])
-<<<<<<< HEAD
-=======
-
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         access_token = create_access_token({"sub": user_uuid})
         refresh_token = create_refresh_token({"sub": user_uuid})
 
         username = response.data[0]["username"]
-<<<<<<< HEAD
-=======
-
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
         await asyncio.to_thread(
             send_verification_success_login_email, data.email, username
         )
@@ -664,7 +506,6 @@ class AuthService:
             "user": {"username": username, "email": data.email},
         }
 
-<<<<<<< HEAD
     @staticmethod
     async def change_password(data):
         """
@@ -707,7 +548,3 @@ class AuthService:
 
 
 auth_service = AuthService()
-=======
-
-auth_service=AuthService()
->>>>>>> bb1d64e96c32bb861b35557a0b54ee61969be875
