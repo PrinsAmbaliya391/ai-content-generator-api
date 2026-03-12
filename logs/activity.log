@@ -62,3 +62,300 @@
 [32m2026-03-10 11:12:54[0m | [1mINFO    [0m | [36mUser :[0m c128ba7a-e2d0-44c4-99c4-cf01a07e38a5 | [35mMethod :[0m POST - /content/regenerate | [36mStatus :[0m [32m200[0m | [36mMessage :[0m Success | [36mTime :[0m [33m2504.49ms[0m
 [32m2026-03-10 11:13:41[0m | [1mINFO    [0m | [36mUser :[0m c128ba7a-e2d0-44c4-99c4-cf01a07e38a5 | [35mMethod :[0m POST - /content/generate | [36mStatus :[0m [32m200[0m | [36mMessage :[0m Success | [36mTime :[0m [33m7657.31ms[0m
 [32m2026-03-10 11:28:28[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /api/summarize | [36mStatus :[0m [31m404[0m | [36mMessage :[0m Not Found | [36mTime :[0m [33m0.58ms[0m
+[32m2026-03-11 11:22:18[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /health | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m2.57ms[0m
+[32m2026-03-11 11:22:18[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /favicon.ico | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.44ms[0m
+[32m2026-03-11 11:22:23[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /docs | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m0.59ms[0m
+[32m2026-03-11 11:22:24[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /openapi.json | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m101.76ms[0m
+[32m2026-03-11 11:22:49[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /health | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m0.48ms[0m
+[32m2026-03-11 11:23:26[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /health | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m0.46ms[0m
+[32m2026-03-11 11:23:38[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /health | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m0.6ms[0m
+[32m2026-03-11 11:23:38[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /favicon.ico | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.47ms[0m
+[32m2026-03-11 11:24:34[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m OPTIONS - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m0.35ms[0m
+[32m2026-03-11 11:24:35[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m1441.38ms[0m
+[32m2026-03-11 11:28:33[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m0.95ms[0m
+[32m2026-03-11 11:29:06[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | [36mTime :[0m [33m4833.23ms[0m
+[32m2026-03-11 11:29:15[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | [36mTime :[0m [33m3845.87ms[0m
+[32m2026-03-11 11:29:29[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | [36mTime :[0m [33m3651.05ms[0m
+[32m2026-03-11 11:29:45[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | [36mTime :[0m [33m3973.72ms[0m
+[32m2026-03-11 11:30:45[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | [36mTime :[0m [33m3662.07ms[0m
+[32m2026-03-11 11:33:28[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m422[0m | [36mTime :[0m [33m1.55ms[0m
+[32m2026-03-11 11:39:34[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m OPTIONS - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m0.44ms[0m
+[32m2026-03-11 11:39:39[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | [36mTime :[0m [33m4178.08ms[0m
+[32m2026-03-11 11:39:44[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /favicon.ico | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.49ms[0m
+[32m2026-03-11 11:40:04[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | [36mTime :[0m [33m4372.58ms[0m
+[32m2026-03-11 11:48:26[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | [36mTime :[0m [33m3927.69ms[0m
+[32m2026-03-11 11:49:01[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m922.52ms[0m
+[32m2026-03-11 11:49:34[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m OPTIONS - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m0.43ms[0m
+[32m2026-03-11 11:49:35[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m500[0m | [36mMessage :[0m hash could not be identified | [36mTime :[0m [33m374.81ms[0m
+[32m2026-03-11 11:50:02[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m500[0m | [36mMessage :[0m hash could not be identified | [36mTime :[0m [33m831.32ms[0m
+[32m2026-03-11 11:51:57[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m500[0m | [36mMessage :[0m hash could not be identified | [36mTime :[0m [33m663.83ms[0m
+[32m2026-03-11 11:52:58[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /auth/login | [36mStatus :[0m [31m405[0m | [36mTime :[0m [33m0.41ms[0m
+[32m2026-03-11 11:52:58[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /favicon.ico | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.51ms[0m
+[32m2026-03-11 11:53:14[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /docs | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m0.4ms[0m
+[32m2026-03-11 11:53:14[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /openapi.json | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m67.79ms[0m
+[32m2026-03-11 11:53:53[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m500[0m | [36mMessage :[0m hash could not be identified | [36mTime :[0m [33m1094.61ms[0m
+[32m2026-03-11 12:39:48[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m OPTIONS - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m0.41ms[0m
+[32m2026-03-11 12:39:53[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | [36mTime :[0m [33m4937.86ms[0m
+[32m2026-03-11 12:47:00[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m name 'hashlib' is not defined | [36mTime :[0m [33m13.72ms[0m
+[32m2026-03-12 04:12:02[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /docs | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m0.56ms[0m
+[32m2026-03-12 04:12:02[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /openapi.json | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m45.84ms[0m
+[32m2026-03-12 04:13:28[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | [36mTime :[0m [33m6562.17ms[0m
+[32m2026-03-12 05:12:09[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5729.46ms[0m
+[32m2026-03-12 05:53:40[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m1187.81ms[0m
+[32m2026-03-12 05:54:11[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5091.86ms[0m
+[32m2026-03-12 05:54:43[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4235.71ms[0m
+[32m2026-03-12 05:55:30[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m921.71ms[0m
+[32m2026-03-12 05:59:27[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4827.2ms[0m
+[32m2026-03-12 05:59:57[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3796.18ms[0m
+[32m2026-03-12 06:00:20[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m760.19ms[0m
+[32m2026-03-12 06:00:28[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m1202.95ms[0m
+[32m2026-03-12 06:00:31[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m555.12ms[0m
+[32m2026-03-12 06:00:49[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m651.37ms[0m
+[32m2026-03-12 06:02:44[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4524.88ms[0m
+[32m2026-03-12 06:02:52[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-otp | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m336.12ms[0m
+[32m2026-03-12 06:03:06[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4377.04ms[0m
+[32m2026-03-12 06:03:26[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m839.24ms[0m
+[32m2026-03-12 06:03:37[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m781.1ms[0m
+[32m2026-03-12 06:11:31[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4860.07ms[0m
+[32m2026-03-12 06:11:53[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4356.82ms[0m
+[32m2026-03-12 06:12:13[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m741.02ms[0m
+[32m2026-03-12 06:12:35[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m648.45ms[0m
+[32m2026-03-12 06:12:59[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m500[0m | [36mMessage :[0m hash could not be identified | [36mTime :[0m [33m546.47ms[0m
+[32m2026-03-12 06:13:04[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m500[0m | [36mMessage :[0m hash could not be identified | [36mTime :[0m [33m214.56ms[0m
+[32m2026-03-12 06:13:17[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4255.2ms[0m
+[32m2026-03-12 06:14:02[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4788.27ms[0m
+[32m2026-03-12 06:14:15[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4310.69ms[0m
+[32m2026-03-12 06:14:27[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m997.99ms[0m
+[32m2026-03-12 06:14:46[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m976.78ms[0m
+[32m2026-03-12 06:15:43[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m1100.88ms[0m
+[32m2026-03-12 06:24:16[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m500[0m | [36mMessage :[0m name 'secrets' is not defined | [36mTime :[0m [33m936.73ms[0m
+[32m2026-03-12 06:29:02[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4989.88ms[0m
+[32m2026-03-12 06:29:16[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-otp | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m394.93ms[0m
+[32m2026-03-12 06:29:33[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4009.51ms[0m
+[32m2026-03-12 06:29:52[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4788.64ms[0m
+[32m2026-03-12 06:30:12[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4679.44ms[0m
+[32m2026-03-12 06:30:13[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m369.39ms[0m
+[32m2026-03-12 06:30:43[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/ws | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.39ms[0m
+[32m2026-03-12 06:30:57[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/system | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.48ms[0m
+[32m2026-03-12 06:31:59[0m | [31m[1mERROR   [0m | [36mUser :[0m c128ba7a-e2d0-44c4-99c4-cf01a07e38a5 | [35mMethod :[0m POST - /content/generate | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m9.29ms[0m
+[32m2026-03-12 06:32:55[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/generate | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m10221.27ms[0m
+[32m2026-03-12 06:33:41[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/ws | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.41ms[0m
+[32m2026-03-12 06:33:54[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/system | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.38ms[0m
+[32m2026-03-12 06:33:56[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/ws | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.31ms[0m
+[32m2026-03-12 06:34:22[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4988.73ms[0m
+[32m2026-03-12 06:34:59[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4010.01ms[0m
+[32m2026-03-12 06:35:00[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m298.55ms[0m
+[32m2026-03-12 06:35:38[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/regenerate | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m2389.44ms[0m
+[32m2026-03-12 06:35:38[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m243.85ms[0m
+[32m2026-03-12 06:46:19[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5249.2ms[0m
+[32m2026-03-12 06:46:32[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4293.93ms[0m
+[32m2026-03-12 06:46:32[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m267.0ms[0m
+[32m2026-03-12 06:46:49[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4626.85ms[0m
+[32m2026-03-12 06:47:21[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4478.82ms[0m
+[32m2026-03-12 06:47:21[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m253.51ms[0m
+[32m2026-03-12 06:47:26[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/regenerate | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m2260.64ms[0m
+[32m2026-03-12 06:47:26[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m233.25ms[0m
+[32m2026-03-12 06:47:44[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/regenerate | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m2643.53ms[0m
+[32m2026-03-12 06:47:44[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m250.54ms[0m
+[32m2026-03-12 06:48:08[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4117.6ms[0m
+[32m2026-03-12 06:48:24[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3643.77ms[0m
+[32m2026-03-12 06:48:25[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m227.66ms[0m
+[32m2026-03-12 07:00:28[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5701.83ms[0m
+[32m2026-03-12 07:00:49[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3988.8ms[0m
+[32m2026-03-12 07:00:49[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m281.81ms[0m
+[32m2026-03-12 07:00:54[0m | [31m[1mERROR   [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/regenerate | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m479.98ms[0m
+[32m2026-03-12 07:00:59[0m | [31m[1mERROR   [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/regenerate | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m461.99ms[0m
+[32m2026-03-12 07:01:31[0m | [31m[1mERROR   [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/generate | [36mStatus :[0m [31m500[0m | [36mMessage :[0m {'message': "Could not find the 'document_context' column of 'generations' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None} | [36mTime :[0m [33m10492.03ms[0m
+[32m2026-03-12 07:01:49[0m | [31m[1mERROR   [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/generate | [36mStatus :[0m [31m500[0m | [36mMessage :[0m {'message': "Could not find the 'document_context' column of 'generations' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None} | [36mTime :[0m [33m10573.44ms[0m
+[32m2026-03-12 07:05:03[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5627.46ms[0m
+[32m2026-03-12 07:05:19[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4583.55ms[0m
+[32m2026-03-12 07:05:19[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m279.49ms[0m
+[32m2026-03-12 07:05:46[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/generate | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m11582.88ms[0m
+[32m2026-03-12 07:06:32[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m768.9ms[0m
+[32m2026-03-12 07:06:42[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/regenerate | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5464.43ms[0m
+[32m2026-03-12 07:06:42[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m236.36ms[0m
+[32m2026-03-12 07:07:10[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/update | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m1060.9ms[0m
+[32m2026-03-12 07:07:10[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m259.39ms[0m
+[32m2026-03-12 07:07:44[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/refine | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m2219.21ms[0m
+[32m2026-03-12 07:07:45[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m313.73ms[0m
+[32m2026-03-12 07:11:02[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/refine | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m2394.3ms[0m
+[32m2026-03-12 07:11:02[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m316.88ms[0m
+[32m2026-03-12 07:11:21[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4794.31ms[0m
+[32m2026-03-12 07:11:37[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4087.76ms[0m
+[32m2026-03-12 07:11:37[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m324.55ms[0m
+[32m2026-03-12 07:11:56[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/refine | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m2944.91ms[0m
+[32m2026-03-12 07:11:56[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m261.41ms[0m
+[32m2026-03-12 07:16:51[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4679.01ms[0m
+[32m2026-03-12 07:17:16[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4340.12ms[0m
+[32m2026-03-12 07:17:16[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m359.75ms[0m
+[32m2026-03-12 07:17:20[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m DELETE - /content/delete/cdd5eaf4-249a-4ba9-be52-35ff96c25187 | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m243.82ms[0m
+[32m2026-03-12 07:18:05[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/refine | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m2826.9ms[0m
+[32m2026-03-12 07:18:06[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m255.41ms[0m
+[32m2026-03-12 07:24:49[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5248.53ms[0m
+[32m2026-03-12 07:25:06[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4021.88ms[0m
+[32m2026-03-12 07:25:06[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m340.43ms[0m
+[32m2026-03-12 07:25:56[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/generate | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m15100.51ms[0m
+[32m2026-03-12 07:26:46[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4300.5ms[0m
+[32m2026-03-12 07:27:15[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3933.96ms[0m
+[32m2026-03-12 07:27:15[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m257.48ms[0m
+[32m2026-03-12 07:27:52[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/refine | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5110.3ms[0m
+[32m2026-03-12 07:27:52[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m252.5ms[0m
+[32m2026-03-12 08:33:48[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5863.77ms[0m
+[32m2026-03-12 08:34:15[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3954.58ms[0m
+[32m2026-03-12 08:34:16[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m332.41ms[0m
+[32m2026-03-12 08:34:34[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /content/update | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m1430.76ms[0m
+[32m2026-03-12 08:34:34[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m298.8ms[0m
+[32m2026-03-12 08:34:38[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/ws | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.49ms[0m
+[32m2026-03-12 08:34:47[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/system | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.39ms[0m
+[32m2026-03-12 08:35:17[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4349.14ms[0m
+[32m2026-03-12 08:35:38[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4431.99ms[0m
+[32m2026-03-12 08:35:38[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m282.81ms[0m
+[32m2026-03-12 08:35:43[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/ws | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.45ms[0m
+[32m2026-03-12 08:35:46[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/system | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.41ms[0m
+[32m2026-03-12 08:35:46[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/ws | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.43ms[0m
+[32m2026-03-12 08:35:47[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/system | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.5ms[0m
+[32m2026-03-12 08:35:48[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/ws | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.43ms[0m
+[32m2026-03-12 08:46:57[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5993.92ms[0m
+[32m2026-03-12 08:47:07[0m | [31m[1mERROR   [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m580.85ms[0m
+[32m2026-03-12 08:47:22[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4002.08ms[0m
+[32m2026-03-12 08:47:23[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m362.57ms[0m
+[32m2026-03-12 08:47:31[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/ws | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.55ms[0m
+[32m2026-03-12 08:48:17[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/system | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.62ms[0m
+[32m2026-03-12 08:48:18[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/ws | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.48ms[0m
+[32m2026-03-12 08:50:13[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4848.54ms[0m
+[32m2026-03-12 08:50:29[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4044.6ms[0m
+[32m2026-03-12 08:50:29[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m257.36ms[0m
+[32m2026-03-12 08:50:31[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m GET - /chat/ws | [36mStatus :[0m [31m404[0m | [36mTime :[0m [33m0.94ms[0m
+[32m2026-03-12 08:53:53[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5160.81ms[0m
+[32m2026-03-12 08:54:16[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3924.21ms[0m
+[32m2026-03-12 08:54:16[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m295.85ms[0m
+[32m2026-03-12 09:02:07[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5042.06ms[0m
+[32m2026-03-12 09:02:26[0m | [31m[1mERROR   [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m589.91ms[0m
+[32m2026-03-12 09:02:34[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3444.21ms[0m
+[32m2026-03-12 09:02:34[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m272.05ms[0m
+[32m2026-03-12 09:10:23[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5031.89ms[0m
+[32m2026-03-12 09:10:57[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3923.9ms[0m
+[32m2026-03-12 09:10:57[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m351.73ms[0m
+[32m2026-03-12 09:15:28[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4872.89ms[0m
+[32m2026-03-12 09:15:47[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4150.62ms[0m
+[32m2026-03-12 09:15:48[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m287.71ms[0m
+[32m2026-03-12 09:20:18[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4818.38ms[0m
+[32m2026-03-12 09:20:31[0m | [31m[1mERROR   [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m398.91ms[0m
+[32m2026-03-12 09:20:54[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4013.3ms[0m
+[32m2026-03-12 09:20:55[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m340.4ms[0m
+[32m2026-03-12 09:26:40[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4935.82ms[0m
+[32m2026-03-12 09:26:57[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3835.96ms[0m
+[32m2026-03-12 09:26:58[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m324.66ms[0m
+[32m2026-03-12 09:27:06[0m | [1mINFO    [0m | New chat session started: 03be796e-bef1-48fe-9884-835e5b8fe08f for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:27:10[0m | [1mINFO    [0m | Message received in session 03be796e-bef1-48fe-9884-835e5b8fe08f
+[32m2026-03-12 09:27:21[0m | [1mINFO    [0m | Message received in session 03be796e-bef1-48fe-9884-835e5b8fe08f
+[32m2026-03-12 09:27:28[0m | [1mINFO    [0m | Message received in session 03be796e-bef1-48fe-9884-835e5b8fe08f
+[32m2026-03-12 09:27:40[0m | [1mINFO    [0m | Message received in session 03be796e-bef1-48fe-9884-835e5b8fe08f
+[32m2026-03-12 09:27:45[0m | [1mINFO    [0m | Client disconnected from session: 03be796e-bef1-48fe-9884-835e5b8fe08f
+[32m2026-03-12 09:27:46[0m | [1mINFO    [0m | New chat session started: 0d417abe-8cd5-42ec-9e73-bb6d8a03883b for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:27:48[0m | [1mINFO    [0m | Client disconnected from session: 0d417abe-8cd5-42ec-9e73-bb6d8a03883b
+[32m2026-03-12 09:27:58[0m | [1mINFO    [0m | New chat session started: 383b63cf-a7f6-48ae-8a26-2c96a8ea7325 for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:28:07[0m | [1mINFO    [0m | Client disconnected from session: 383b63cf-a7f6-48ae-8a26-2c96a8ea7325
+[32m2026-03-12 09:28:08[0m | [1mINFO    [0m | New chat session started: e75fdc24-8c43-49d7-b24e-dcf18ce12187 for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:28:10[0m | [1mINFO    [0m | Client disconnected from session: e75fdc24-8c43-49d7-b24e-dcf18ce12187
+[32m2026-03-12 09:28:11[0m | [1mINFO    [0m | New chat session started: 96df0b3a-d3fa-471b-b4c8-a42a483e4932 for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:28:17[0m | [1mINFO    [0m | Client disconnected from session: 96df0b3a-d3fa-471b-b4c8-a42a483e4932
+[32m2026-03-12 09:28:18[0m | [1mINFO    [0m | New chat session started: a2fe097d-0b34-48b3-a9aa-05f687dcf8b1 for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:30:38[0m | [1mINFO    [0m | Client disconnected from session: a2fe097d-0b34-48b3-a9aa-05f687dcf8b1
+[32m2026-03-12 09:32:32[0m | [1mINFO    [0m | New chat session started: 0cb57707-8a19-41e4-aded-2443f769ce3d for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:32:32[0m | [1mINFO    [0m | Client disconnected from session: 0cb57707-8a19-41e4-aded-2443f769ce3d
+[32m2026-03-12 09:32:32[0m | [1mINFO    [0m | New chat session started: 110663be-f01a-4d6a-afb4-9f72aef5877c for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:32:34[0m | [1mINFO    [0m | Client disconnected from session: 110663be-f01a-4d6a-afb4-9f72aef5877c
+[32m2026-03-12 09:32:58[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4856.41ms[0m
+[32m2026-03-12 09:33:22[0m | [31m[1mERROR   [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m597.29ms[0m
+[32m2026-03-12 09:33:31[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3664.49ms[0m
+[32m2026-03-12 09:33:32[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m265.41ms[0m
+[32m2026-03-12 09:33:34[0m | [1mINFO    [0m | New chat session started: 17d21de2-665a-494a-9101-021f379d9d54 for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:33:36[0m | [1mINFO    [0m | Client disconnected from session: 17d21de2-665a-494a-9101-021f379d9d54
+[32m2026-03-12 09:33:42[0m | [1mINFO    [0m | New chat session started: c9846b28-4f76-4ba8-a002-f2168f434751 for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:33:47[0m | [1mINFO    [0m | Message received in session c9846b28-4f76-4ba8-a002-f2168f434751
+[32m2026-03-12 09:34:08[0m | [1mINFO    [0m | Client disconnected from session: c9846b28-4f76-4ba8-a002-f2168f434751
+[32m2026-03-12 09:35:27[0m | [1mINFO    [0m | New chat session started: 282133e7-811f-44de-8a20-ea548ad06962 for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:35:28[0m | [1mINFO    [0m | Client disconnected from session: 282133e7-811f-44de-8a20-ea548ad06962
+[32m2026-03-12 09:35:29[0m | [1mINFO    [0m | New chat session started: b9c00953-4dbe-4442-b11c-3a9d0cc88bd1 for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:35:29[0m | [1mINFO    [0m | Client disconnected from session: b9c00953-4dbe-4442-b11c-3a9d0cc88bd1
+[32m2026-03-12 09:35:30[0m | [1mINFO    [0m | New chat session started: d4af5d1a-6bf3-403b-8ae9-b614b6344ae2 for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:35:30[0m | [1mINFO    [0m | Client disconnected from session: d4af5d1a-6bf3-403b-8ae9-b614b6344ae2
+[32m2026-03-12 09:35:30[0m | [1mINFO    [0m | New chat session started: 947464fb-df5b-4cb7-b719-e6b3c7871d1a for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:35:31[0m | [1mINFO    [0m | Client disconnected from session: 947464fb-df5b-4cb7-b719-e6b3c7871d1a
+[32m2026-03-12 09:35:31[0m | [1mINFO    [0m | New chat session started: 07071450-a5ad-4d4f-8dd8-1cb8251cdb4b for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:35:32[0m | [1mINFO    [0m | Client disconnected from session: 07071450-a5ad-4d4f-8dd8-1cb8251cdb4b
+[32m2026-03-12 09:38:51[0m | [1mINFO    [0m | New chat session started: a1c1e9d3-48ad-4320-963d-4b59476c40fc for user: 65a1cb41-d7dd-448a-9497-cbfda4b972a9
+[32m2026-03-12 09:38:51[0m | [1mINFO    [0m | Client disconnected from session: a1c1e9d3-48ad-4320-963d-4b59476c40fc
+[32m2026-03-12 09:40:50[0m | [31m[1mERROR   [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m25.42ms[0m
+[32m2026-03-12 09:41:02[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/signup | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m6328.01ms[0m
+[32m2026-03-12 09:41:23[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5616.38ms[0m
+[32m2026-03-12 09:42:02[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4911.39ms[0m
+[32m2026-03-12 09:42:17[0m | [1mINFO    [0m | [36mUser :[0m 65a1cb41-d7dd-448a-9497-cbfda4b972a9 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4048.63ms[0m
+[32m2026-03-12 09:42:17[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m276.68ms[0m
+[32m2026-03-12 09:42:28[0m | [1mINFO    [0m | New chat session started: 29de9bfc-05c7-4110-8cc9-4ae83744365d for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 09:42:29[0m | [1mINFO    [0m | Client disconnected from session: 29de9bfc-05c7-4110-8cc9-4ae83744365d
+[32m2026-03-12 09:42:35[0m | [1mINFO    [0m | New chat session started: 03eafc6f-2db4-468b-ba30-1c62f9c9e582 for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 09:42:38[0m | [1mINFO    [0m | Message received in session 03eafc6f-2db4-468b-ba30-1c62f9c9e582
+[32m2026-03-12 09:47:57[0m | [1mINFO    [0m | Client disconnected from session: 03eafc6f-2db4-468b-ba30-1c62f9c9e582
+[32m2026-03-12 09:49:32[0m | [1mINFO    [0m | New chat session started: 46bdc3fc-9fd8-4063-bee4-3a32cc48c395 for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 09:49:34[0m | [1mINFO    [0m | Client disconnected from session: 46bdc3fc-9fd8-4063-bee4-3a32cc48c395
+[32m2026-03-12 09:49:34[0m | [1mINFO    [0m | New chat session started: 45204879-87af-411d-90f6-cf521dbf0a89 for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 09:49:35[0m | [1mINFO    [0m | Client disconnected from session: 45204879-87af-411d-90f6-cf521dbf0a89
+[32m2026-03-12 09:51:25[0m | [31m[1mERROR   [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m1233.15ms[0m
+[32m2026-03-12 09:51:37[0m | [31m[1mERROR   [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m1261.85ms[0m
+[32m2026-03-12 09:51:52[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4841.91ms[0m
+[32m2026-03-12 09:52:06[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3888.85ms[0m
+[32m2026-03-12 09:52:06[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m244.32ms[0m
+[32m2026-03-12 09:52:16[0m | [1mINFO    [0m | New chat session started: e0c99d9d-4526-47b2-b1cc-ba0143ccce06 for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 09:52:17[0m | [1mINFO    [0m | Client disconnected from session: e0c99d9d-4526-47b2-b1cc-ba0143ccce06
+[32m2026-03-12 09:52:17[0m | [1mINFO    [0m | New system chat session started: a5fed6bb-97e1-470b-a16c-e091277eac0d
+[32m2026-03-12 09:52:28[0m | [1mINFO    [0m | System chat client disconnected: a5fed6bb-97e1-470b-a16c-e091277eac0d
+[32m2026-03-12 09:52:28[0m | [1mINFO    [0m | New chat session started: 81d50770-84b8-4f27-a423-7ab9f75b5d04 for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 09:52:29[0m | [1mINFO    [0m | Client disconnected from session: 81d50770-84b8-4f27-a423-7ab9f75b5d04
+[32m2026-03-12 09:52:29[0m | [1mINFO    [0m | New system chat session started: a299dd99-81e8-40fe-9443-0c3d7156c738
+[32m2026-03-12 09:52:29[0m | [1mINFO    [0m | System chat client disconnected: a299dd99-81e8-40fe-9443-0c3d7156c738
+[32m2026-03-12 09:52:29[0m | [1mINFO    [0m | New chat session started: 6a961a16-8303-4f7d-b1c6-bd2ecde5fed6 for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 09:52:30[0m | [1mINFO    [0m | Client disconnected from session: 6a961a16-8303-4f7d-b1c6-bd2ecde5fed6
+[32m2026-03-12 09:52:30[0m | [1mINFO    [0m | New system chat session started: 822e3824-d11c-4424-a135-630b0951c5c9
+[32m2026-03-12 09:52:31[0m | [1mINFO    [0m | System chat client disconnected: 822e3824-d11c-4424-a135-630b0951c5c9
+[32m2026-03-12 09:52:31[0m | [1mINFO    [0m | New chat session started: 9e086ae1-6152-4a70-8312-f508b617ef03 for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 09:52:34[0m | [1mINFO    [0m | Client disconnected from session: 9e086ae1-6152-4a70-8312-f508b617ef03
+[32m2026-03-12 09:52:40[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4345.35ms[0m
+[32m2026-03-12 09:59:09[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5288.35ms[0m
+[32m2026-03-12 10:00:26[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [31m401[0m | [36mTime :[0m [33m888.67ms[0m
+[32m2026-03-12 10:00:39[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4776.04ms[0m
+[32m2026-03-12 10:00:53[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [31m500[0m | [36mMessage :[0m name 'receiver' is not defined | [36mTime :[0m [33m329.95ms[0m
+[32m2026-03-12 10:00:59[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [31m500[0m | [36mMessage :[0m name 'receiver' is not defined | [36mTime :[0m [33m336.71ms[0m
+[32m2026-03-12 10:06:58[0m | [31m[1mERROR   [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [31m400[0m | [36mTime :[0m [33m905.24ms[0m
+[32m2026-03-12 10:07:19[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4713.22ms[0m
+[32m2026-03-12 10:07:33[0m | [1mINFO    [0m | [36mUser :[0m Anonymous | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3920.23ms[0m
+[32m2026-03-12 10:07:33[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m275.49ms[0m
+[32m2026-03-12 10:10:16[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4456.85ms[0m
+[32m2026-03-12 10:10:38[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3692.67ms[0m
+[32m2026-03-12 10:10:39[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m584.36ms[0m
+[32m2026-03-12 10:14:12[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5414.4ms[0m
+[32m2026-03-12 10:14:26[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m4382.5ms[0m
+[32m2026-03-12 10:14:26[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m278.42ms[0m
+[32m2026-03-12 10:15:13[0m | [1mINFO    [0m | New chat session started: b9501a55-486f-4660-a4f8-e09a2dbe46c8 for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 10:15:13[0m | [1mINFO    [0m | Client disconnected from session: b9501a55-486f-4660-a4f8-e09a2dbe46c8
+[32m2026-03-12 10:15:13[0m | [1mINFO    [0m | New system chat session started: 721dc8c6-e8aa-4566-bd23-533e047bffff
+[32m2026-03-12 10:18:04[0m | [1mINFO    [0m | System chat client disconnected: 721dc8c6-e8aa-4566-bd23-533e047bffff
+[32m2026-03-12 10:19:15[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5225.85ms[0m
+[32m2026-03-12 10:21:18[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/login | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m5030.41ms[0m
+[32m2026-03-12 10:21:35[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m POST - /auth/verify-login-otp | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m3737.89ms[0m
+[32m2026-03-12 10:21:36[0m | [1mINFO    [0m | [36mUser :[0m 7aaad70f-c488-4c63-a86c-bcd50885cd36 | [35mMethod :[0m GET - /content/history | [36mStatus :[0m [32m200[0m | [36mTime :[0m [33m269.49ms[0m
+[32m2026-03-12 10:21:38[0m | [1mINFO    [0m | New chat session started: c30cdfe5-9240-446f-8a17-bf3efa1932fb for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 10:21:40[0m | [1mINFO    [0m | Client disconnected from session: c30cdfe5-9240-446f-8a17-bf3efa1932fb
+[32m2026-03-12 10:21:40[0m | [1mINFO    [0m | New system chat session started: b38f1424-9420-498d-973b-949c648210e7
+[32m2026-03-12 10:24:55[0m | [1mINFO    [0m | System chat client disconnected: b38f1424-9420-498d-973b-949c648210e7
+[32m2026-03-12 10:24:55[0m | [1mINFO    [0m | New chat session started: 97e77564-b0d2-4da1-ab8f-97697e44d53b for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 10:25:03[0m | [1mINFO    [0m | Client disconnected from session: 97e77564-b0d2-4da1-ab8f-97697e44d53b
+[32m2026-03-12 10:25:03[0m | [1mINFO    [0m | New chat session started: 5c933c2c-e55c-47b0-8afb-031bf7d95fe9 for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 10:25:07[0m | [1mINFO    [0m | Client disconnected from session: 5c933c2c-e55c-47b0-8afb-031bf7d95fe9
+[32m2026-03-12 10:25:07[0m | [1mINFO    [0m | New chat session started: a22a86fe-02e9-4640-b7f8-f6410c6b5029 for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 10:25:19[0m | [1mINFO    [0m | Client disconnected from session: a22a86fe-02e9-4640-b7f8-f6410c6b5029
+[32m2026-03-12 10:25:19[0m | [1mINFO    [0m | New system chat session started: 92e84193-8203-481b-90ba-bdea0d83e50d
+[32m2026-03-12 10:25:20[0m | [1mINFO    [0m | System chat client disconnected: 92e84193-8203-481b-90ba-bdea0d83e50d
+[32m2026-03-12 10:25:20[0m | [1mINFO    [0m | New chat session started: 3ecefbd2-49d0-41da-9ff5-43ac55478dbb for user: 7aaad70f-c488-4c63-a86c-bcd50885cd36
+[32m2026-03-12 10:28:48[0m | [1mINFO    [0m | Client disconnected from session: 3ecefbd2-49d0-41da-9ff5-43ac55478dbb

@@ -27,6 +27,10 @@ LOG_FORMAT = (
 
 
 def business_logic_filter(record):
+    """
+    Filters log records to only include those flagged as 'is_business'.
+    This separates system/framework logs from application business logic.
+    """
     return record["extra"].get("is_business") is True
 
 
@@ -48,7 +52,7 @@ logger.add(
     level="INFO",
     rotation="10 MB",
     retention="7 days",
-    colorize=True,
+    colorize=False,
     enqueue=True,
     filter=business_logic_filter,
 )
@@ -58,17 +62,19 @@ logger.add(
 # 3. MIDDLEWARE
 # -------------------------
 class BusinessLogicLoggerMiddleware(BaseHTTPMiddleware):
+    """
+    Starlette middleware for logging HTTP request/response cycles.
+    Includes user identity extraction from JWT and performance timing.
+    """
 
     async def dispatch(self, request: Request, call_next):
         start_time = time.perf_counter()
+        method = request.method
+        path = request.url.path
 
-        # ---------------------------------------------------------
-        # UPDATE 1: Try to get User Identity from Request Body if no token
-        # (This prevents /auth/login from showing as "Anonymous")
-        # ---------------------------------------------------------
+        # Identify user (simplified for now to avoid body reading issues)
         user_identity = "Anonymous"
         auth_header = request.headers.get("Authorization")
-
         if auth_header and auth_header.startswith("Bearer "):
             try:
                 token = auth_header.split(" ")[1]
@@ -76,70 +82,17 @@ class BusinessLogicLoggerMiddleware(BaseHTTPMiddleware):
                 user_identity = claims.get("sub") or "AuthUser"
             except Exception:
                 user_identity = "InvalidToken"
-        else:
-            # If no token, check if it's a login attempt and use email as temporary ID
-            try:
-                body_bytes = await request.body()
-
-                # We must re-wrap the request body so the actual route can read it later
-                async def receive():
-                    return {"type": "http.request", "body": body_bytes}
-
-                request._receive = receive
-
-                if body_bytes:
-                    req_json = json.loads(body_bytes.decode())
-                    user_identity = req_json.get("email") or "Anonymous"
-            except:
-                pass
-
-        method = request.method
-        path = request.url.path
 
         try:
             response = await call_next(request)
             process_time = round((time.perf_counter() - start_time) * 1000, 2)
             status_code = response.status_code
 
-            body = b""
-            async for chunk in response.body_iterator:
-                body += chunk
-
-            new_response = Response(
-                content=body,
-                status_code=status_code,
-                headers=dict(response.headers),
-                media_type=response.media_type,
-            )
-
-            # ---------------------------------------------------------
-            # UPDATE 2: Extract Message AND UUID from the Response
-            # (Ensures 'Message' is present in success logs)
-            # ---------------------------------------------------------
-            message = "Success"
-            try:
-                resp_json = json.loads(body.decode())
-                # Capture custom message or detail from the API
-                message = (
-                    resp_json.get("message") or resp_json.get("detail") or "Success"
-                )
-
-                # If the login was successful, the access_token contains the UUID
-                if "access_token" in resp_json:
-                    token_claims = jwt.get_unverified_claims(resp_json["access_token"])
-                    user_identity = token_claims.get("sub") or user_identity
-            except Exception:
-                message = body.decode()[:100] if body else "Success"
-
-            # ---------------------------------------------------------
-            # UPDATE 3: Use the exact log format you requested
-            # ---------------------------------------------------------
             log_output = (
                 f"<cyan>User :</cyan> {user_identity} | "
                 f"<magenta>Method :</magenta> {method} - {path} | "
                 f"<cyan>Status :</cyan> "
                 f"{'<green>' if status_code < 400 else '<red>'}{status_code}{'</green>' if status_code < 400 else '</red>'} | "
-                f"<cyan>Message :</cyan> {message} | "
                 f"<cyan>Time :</cyan> <yellow>{process_time}ms</yellow>"
             )
 
@@ -148,7 +101,7 @@ class BusinessLogicLoggerMiddleware(BaseHTTPMiddleware):
             else:
                 logger.bind(is_business=True).opt(colors=True).error(log_output)
 
-            return new_response
+            return response
 
         except Exception as e:
             process_time = round((time.perf_counter() - start_time) * 1000, 2)

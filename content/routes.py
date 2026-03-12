@@ -30,6 +30,17 @@ async def create_content(
 ):
     """
     Generates new AI content based on a topic and optional document context (RAG).
+
+    Args:
+        topic (str): The subject of the content.
+        word_count (int): Target length of the generated text.
+        tone (str): Desired writing style (e.g., formal, casual).
+        language (str): Target language.
+        file (UploadFile, optional): Document for RAG context.
+        user_uuid (str): Identity of the authenticated user.
+
+    Returns:
+        dict: Generated content and metadata.
     """
     req = ContentRequest(
         topic=topic, word_count=word_count, tone=tone, language=language
@@ -40,15 +51,30 @@ async def create_content(
 @router.get("/history")
 async def get_history(user_uuid: str = Depends(get_current_user)):
     """
-    Retrieves the generation history for the authenticated user.
+    Retrieves the complete generation history for the authenticated user, including all versions.
+
+    Args:
+        user_uuid (str): Identity of the authenticated user.
+
+    Returns:
+        dict: List of previous generation records.
     """
     return await ContentService.get_history(user_uuid)
 
 
 @router.delete("/delete/{generations_uuid}")
-async def delete_content(generations_uuid: str, user_uuid: str = Depends(get_current_user)):
+async def delete_content(
+    generations_uuid: str, user_uuid: str = Depends(get_current_user)
+):
     """
-    Deletes a specific generation record.
+    Permanently deletes a specific generation record and its history.
+
+    Args:
+        generations_uuid (str): External identifier for the generation.
+        user_uuid (str): Identity of the authenticated user.
+
+    Returns:
+        dict: Confirmation message.
     """
     return await ContentService.delete(generations_uuid, user_uuid)
 
@@ -58,7 +84,14 @@ async def update_content(
     req: UpdateRequest, user_uuid: str = Depends(get_current_user)
 ):
     """
-    Appends manual edits to an existing content record.
+    Saves a manually updated version of the generated content.
+
+    Args:
+        req (UpdateRequest): Contains the UUID and the updated text.
+        user_uuid (str): Identity of the authenticated user.
+
+    Returns:
+        dict: Status of the update.
     """
     return await ContentService.update_content(req, user_uuid)
 
@@ -68,7 +101,14 @@ async def refine_content(
     req: RefineRequest, user_uuid: str = Depends(get_current_user)
 ):
     """
-    Refines existing content using AI feedback.
+    Refines existing content using AI based on user feedback.
+
+    Args:
+        req (RefineRequest): Contains the UUID and specific refinement instructions.
+        user_uuid (str): Identity of the authenticated user.
+
+    Returns:
+        dict: The refined content.
     """
     return await ContentService.refine_content(req, user_uuid)
 
@@ -78,6 +118,13 @@ async def regenerate_content(
     req: RegenerateRequest, user_uuid: str = Depends(get_current_user)
 ):
     """
-    Regenerates a completely new version of the content.
+    Regenerates a completely new AI response for a given topic and context.
+
+    Args:
+        req (RegenerateRequest): Contains the UUID of the generation to rewrite.
+        user_uuid (str): Identity of the authenticated user.
+
+    Returns:
+        dict: The newly generated content.
     """
     return await ContentService.regenerate_content(req, user_uuid)

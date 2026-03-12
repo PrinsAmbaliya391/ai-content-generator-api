@@ -112,6 +112,12 @@ def append_to_dataset(tone: str, content: str):
         logger.bind(is_business=True).error(f"Error appending to dataset: {e}")
 
 
+# LangChain Google Embedding Configuration
+embeddings = GoogleGenerativeAIEmbeddings(
+    model="gemini-embedding-001", google_api_key=GEMINI_KEY
+)
+
+
 def search_vector_from_text(text: str, query: str) -> str:
     """
     Performs a similarity search on a text segment using RAG.
@@ -126,17 +132,33 @@ def search_vector_from_text(text: str, query: str) -> str:
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     docs = text_splitter.create_documents([text])
 
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="gemini-embedding-001", google_api_key=GEMINI_KEY
-    )
-
     try:
-        vectordb = Chroma.from_documents(documents=docs, embedding=embeddings)
+        vectordb = Chroma.from_documents(
+            documents=docs, embedding=embeddings, collection_name="temp_doc"
+        )
         results = vectordb.similarity_search(query, k=4)
         return "\n".join([doc.page_content for doc in results])
     except Exception as e:
         logger.bind(is_business=True).error(f"RAG Error: {e}")
         raise HTTPException(status_code=500, detail="Vector search service unavailable")
+
+
+async def simple_yes_no_check(prompt: str) -> str:
+    """
+    Sends a simple prompt to Gemini and expects a YES/NO response.
+
+    Args:
+        prompt (str): The verification prompt.
+
+    Returns:
+        str: Cleaned response text (usually YES or NO).
+    """
+    response = await asyncio.to_thread(
+        client.models.generate_content,
+        model="gemini-3.1-flash-lite-preview",
+        contents=prompt,
+    )
+    return (response.text or "").strip().upper()
 
 
 def count_words(text: str) -> int:
@@ -201,7 +223,7 @@ async def generate_large_content(
         result += " " + extra
 
     words = result.split()
-    return " ".join(words[:word_count]).lower()
+    return " ".join(words[:word_count])
 
 
 async def generate_with_word_control(
@@ -233,52 +255,63 @@ async def generate_content(
     )
 
     prompt = f"""
-    {persona}
+ROLE:
+{persona}
 
-you must follow the tone instruction strictly.
+GOAL:
+Generate a high-quality response to the task while strictly following the required tone, language, and document-based knowledge constraints.
 
-task:
+TASK:
 {prompt_input}
 
-tone instruction (critical):
-the entire response must be written strictly in a "{tone}" tone.
-every sentence must clearly reflect the "{tone}" tone.
+WORK:
+1. Carefully read the provided document and task.
+2. Extract only the information that directly answers the question.
+3. Structure the response clearly in paragraphs.
+4. Maintain the requested tone throughout the entire response.
+5. Ensure the response length is close to the target word count.
 
-tone rules:
-- do not mix tones
-- do not switch tone
-- do not soften the tone
-- do not add neutral sentences
-- every paragraph must maintain the same tone
-- every sentence must sound consistent with "{tone}"
+TONE INSTRUCTION (CRITICAL):
+The entire response must be written strictly in a "{tone}" tone.
+Every sentence must clearly reflect the "{tone}" tone.
 
-content rules:
-- strictly rely on the document when answering
-- do not invent information
-- if the document does not contain the answer say EXACTLY: "I can only answer questions based on the provided document."
+TONE RULES:
+- Do not mix tones.
+- Do not switch tone anywhere in the response.
+- Do not soften the tone.
+- Do not add neutral sentences.
+- Every paragraph must maintain the same tone.
+- Every sentence must reflect the "{tone}" tone.
 
-writing settings:
-language: {language}
-target words: approximately {word_count}
+CONTENT RULES (CRITICAL):
+- The document is the ONLY source of truth.
+- Do not use external knowledge.
+- Never guess or invent information.
+- If the answer is not explicitly stated in the document, respond ONLY with:
+i can only answer questions based on the provided document.
 
-style rules:
-- everything must be lowercase
-- no headers
-- no titles
-- start directly with the answer
-- write in paragraphs only
+WRITING SETTINGS:
+- Language: {language}
+- Target length: approximately {word_count} words.
 
-validation before responding:
-confirm internally that:
-1. the tone is strictly "{tone}"
-2. the tone does not change anywhere
-3. the tone matches the requested tone style
+STYLE RULES:
+- Use natural sentence casing.
+- Do not include headers or titles.
+- Start directly with the answer.
+- Write only in paragraph format.
 
-output only the final answer.
-    """
+VALIDATION BEFORE RESPONDING:
+Confirm internally that:
+1. The tone is strictly "{tone}".
+2. The tone does not change anywhere.
+3. All information comes from the document only.
 
+OUTPUT:
+Return only the final generated answer.
+Do not include explanations, notes, or metadata.
+"""
     generate_config = GenerateContentConfig(
-        temperature=0.3,
+        temperature=0.6,
         safety_settings=[
             SafetySetting(
                 category=HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -296,7 +329,7 @@ output only the final answer.
                 config=generate_config,
             )
             if response.text:
-                return response.text.lower()
+                return response.text.strip()
         except Exception as e:
             logger.bind(is_business=True).error(f"Attempt {attempt} failed: {e}")
             await asyncio.sleep(1)
@@ -305,26 +338,112 @@ output only the final answer.
 
 
 async def refine_content_with_ai(
-    model_response: str, user_change: str, disliked_part: str, tone: str, language: str
+    model_response: str,
+    user_change: str,
+    disliked_part: str,
+    tone: str,
+    language: str,
 ) -> str:
-    """
-    Refines existing content based on specific user feedback.
-    """
-    prompt = f"Refine this text: {model_response}\nChange: {user_change}\nRemove: {disliked_part}"
-    return await generate_content(prompt, count_words(model_response), tone, language)
+
+    target_words = count_words(model_response)
+
+    prompt = f"""
+ROLE:
+You are a professional AI content editor and writing specialist.
+
+GOAL:
+Refine and improve the provided text according to the user's request while preserving the original topic and structure.
+
+INPUT:
+Current Text:
+{model_response}
+
+User Request:
+{user_change}
+
+Disliked Part:
+{disliked_part}
+
+WORK:
+1. Carefully analyze the current text.
+2. Identify the section the user disliked.
+3. Apply the requested change to improve that section.
+4. Enhance clarity, readability, and impact where necessary.
+5. Ensure the text remains coherent and logically structured.
+
+RULES:
+- Do not change the main topic.
+- Modify only the relevant parts of the text.
+- Keep the rest of the content consistent.
+- Maintain the tone: {tone}.
+- Maintain the language: {language}.
+- Keep approximately the same word count as the original text.
+- Do not remove important information.
+
+OUTPUT:
+Return the FULL refined text only.
+Do not explain the changes.
+Do not add comments or notes.
+"""
+
+    response = await asyncio.to_thread(
+        client.models.generate_content,
+        model="gemini-3.1-flash-lite-preview",
+        contents=prompt,
+    )
+
+    return response.text
 
 
 async def regenerate_content_with_ai(
-    topic: str, word_count: int, tone: str, language: str
+    question: str,
+    document_context: str,
+    previous_answer: str,
+    word_count: int,
+    tone: str,
+    language: str,
 ) -> str:
-    """
-    Generates a full new version of a topic.
-    """
-    if word_count > 1500:
-        return await generate_large_content(topic, word_count, tone, language)
-    return await generate_content(
-        f"write a new version of {topic}", word_count, tone, language
-    )
+
+    prompt = f"""
+<document>
+{document_context}
+</document>
+
+<question>
+{question}
+</question>
+
+<previous_answer>
+{previous_answer}
+</previous_answer>
+
+task:
+generate a COMPLETELY NEW answer using the document.
+
+strict rules:
+- the previous answer is shown only as a reference
+- DO NOT repeat sentences
+- DO NOT reuse phrasing
+- DO NOT follow the same structure
+- DO NOT paraphrase the previous answer
+
+writing requirements:
+- explain the information in a different way
+- change the explanation order
+- use different sentence structures
+- focus on different parts of the document if possible
+
+knowledge rules:
+- use ONLY the document
+- never add external knowledge
+- if the answer is not explicitly in the document respond EXACTLY with:
+i can only answer questions based on the provided document.
+
+target words: {word_count}
+language: {language}
+"""
+
+    return await generate_content(prompt, word_count, tone, language)
 
 
 def get_generation(generations_uuid: str, user_uuid: str) -> dict:
@@ -344,6 +463,9 @@ def get_generation(generations_uuid: str, user_uuid: str) -> dict:
 
     generation = gen_res.data[0]
     gen_uuid = generation["generations_uuid"]
+
+    # Ensure document context exists
+    generation["document_context"] = generation.get("document_context", "")
 
     # Fetch contents
     content_res = (
@@ -409,12 +531,47 @@ class ContentService:
             search_vector_from_text, doc_context, req.topic
         )
 
-        check_prompt = f"Question: {req.topic}\nContext: {rag_context}\nTask: Can the context answer this? Answer exactly 'YES' or 'NO'."
-        check_response = await generate_content(check_prompt, 5, "neutral", "english")
+        check_prompt = f"""
+ROLE:
+You are a strict document verification assistant.
+
+GOAL:
+Determine whether the document contains enough information to answer the question.
+
+DOCUMENT:
+{rag_context}
+
+QUESTION:
+{req.topic}
+
+WORK:
+1. Carefully read the document.
+2. Check if the document explicitly contains the information needed to answer the question.
+3. Do not infer or assume missing information.
+
+RULES:
+- Only check information that is explicitly present in the document.
+- Do not use external knowledge.
+- Do not guess.
+- If the answer is clearly present in the document, respond with YES.
+- If the answer is missing or unclear, respond with NO.
+
+OUTPUT:
+Respond with ONLY one word:
+YES
+or
+NO
+"""
+        check_response = await simple_yes_no_check(check_prompt)
 
         if "YES" not in check_response.upper():
             raise HTTPException(
                 status_code=404, detail="Document context insufficient."
+            )
+
+        if not rag_context.strip():
+            raise HTTPException(
+                status_code=404, detail="No relevant information found in the document."
             )
 
         task_input = (
@@ -449,8 +606,8 @@ class ContentService:
             "word_count": req.word_count,
             "tone": req.tone,
             "language": req.language,
+            "document_context": rag_context,
         }
-
         insert_gen_res = await asyncio.to_thread(
             lambda: supabase.table("generations").insert(db_data).execute()
         )
@@ -540,8 +697,25 @@ class ContentService:
         current = await asyncio.to_thread(
             get_generation, req.generations_uuid, user_uuid
         )
+        if not current["content"]:
+            raise HTTPException(
+                status_code=400, detail="No previous content available to regenerate."
+            )
+
+        previous_answer = current["content"][-1]
+
+        doc_context = current.get("document_context")
+
+        if not doc_context:
+            raise HTTPException(
+                status_code=400,
+                detail="Document context missing. Cannot regenerate answer.",
+            )
+
         new_text = await regenerate_content_with_ai(
             current["topic"],
+            doc_context,
+            previous_answer,
             current["word_count"],
             current["tone"],
             current["language"],

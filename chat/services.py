@@ -41,7 +41,9 @@ class ChatService:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
             if payload.get("type") != "access":
-                logger.bind(is_business=True).warning("Invalid token type provided for WebSocket auth.")
+                logger.bind(is_business=True).warning(
+                    "Invalid token type provided for WebSocket auth."
+                )
                 return None
 
             return payload.get("sub")
@@ -53,44 +55,37 @@ class ChatService:
     @staticmethod
     async def handle_websocket(websocket: WebSocket):
         """
-        Handles a general-purpose chat WebSocket connection.
+        Orchestrates a general-purpose AI chat session over WebSocket.
+        Handles authentication, session persistence, history retrieval, and AI generation.
 
         Args:
             websocket (WebSocket): The active WebSocket connection.
         """
-        auth_header = websocket.headers.get("authorization")
-
-        if not auth_header:
-            logger.bind(is_business=True).warning("WebSocket connection attempt without authorization header.")
-            await websocket.accept()
+        token = websocket.query_params.get("token")
+        if not token:
             await websocket.close()
             return
-
-        try:
-            token = auth_header.split(" ")[1]
-        except Exception:
-            logger.bind(is_business=True).error("Malformed authorization header in WebSocket connection.")
-            await websocket.accept()
-            await websocket.close()
-            return
-
-        await websocket.accept()
-
         user_uuid = await ChatService.get_user_from_token(token)
 
         if not user_uuid:
-            logger.bind(is_business=True).warning("Unauthorized WebSocket connection attempt.")
+            logger.bind(is_business=True).warning(
+                "Unauthorized WebSocket connection attempt."
+            )
             await websocket.close()
             return
 
-        session_id = str(uuid.uuid4())
+        session_id = websocket.query_params.get("session") or str(uuid.uuid4())
         ist = pytz.timezone("Asia/Kolkata")
-        logger.bind(is_business=True).info(f"New chat session started: {session_id} for user: {user_uuid}")
+        logger.bind(is_business=True).info(
+            f"New chat session started: {session_id} for user: {user_uuid}"
+        )
 
         try:
             while True:
                 message = await websocket.receive_text()
-                logger.bind(is_business=True).info(f"Message received in session {session_id}")
+                logger.bind(is_business=True).info(
+                    f"Message received in session {session_id}"
+                )
 
                 # Fetch existing chat history for context
                 existing = (
@@ -125,7 +120,9 @@ Assistant:
                     )
                     ai_text = response.text if response.text else "No AI response"
                 except Exception as e:
-                    logger.bind(is_business=True).error(f"Gemini API error in chat: {e}")
+                    logger.bind(is_business=True).error(
+                        f"Gemini API error in chat: {e}"
+                    )
                     ai_text = "AI service temporarily unavailable"
 
                 try:
@@ -158,9 +155,13 @@ Assistant:
                 await websocket.send_text(ai_text)
 
         except WebSocketDisconnect:
-            logger.bind(is_business=True).info(f"Client disconnected from session: {session_id}")
+            logger.bind(is_business=True).info(
+                f"Client disconnected from session: {session_id}"
+            )
         except Exception as e:
-            logger.bind(is_business=True).error(f"Unexpected error in WebSocket handler: {e}")
+            logger.bind(is_business=True).error(
+                f"Unexpected error in WebSocket handler: {e}"
+            )
             await websocket.close()
 
     @staticmethod
@@ -169,21 +170,11 @@ Assistant:
         Handles system-specific support chat WebSocket connection.
         Only answers queries related to system features.
         """
-        auth_header = websocket.headers.get("authorization")
+        token = websocket.query_params.get("token")
 
-        if not auth_header:
-            await websocket.accept()
+        if not token:
             await websocket.close()
             return
-
-        try:
-            token = auth_header.split(" ")[1]
-        except Exception:
-            await websocket.accept()
-            await websocket.close()
-            return
-
-        await websocket.accept()
 
         user_uuid = await ChatService.get_user_from_token(token)
 
@@ -191,9 +182,13 @@ Assistant:
             await websocket.close()
             return
 
+        await websocket.accept()
+
         session_id = str(uuid.uuid4())
         ist = pytz.timezone("Asia/Kolkata")
-        logger.bind(is_business=True).info(f"New system chat session started: {session_id}")
+        logger.bind(is_business=True).info(
+            f"New system chat session started: {session_id}"
+        )
 
         try:
             while True:
@@ -214,11 +209,13 @@ Assistant:
                         history_text += f"{role}: {msg['content']}\n"
 
                 system_prompt = f"""
+ROLE
 You are an AI assistant for an AI Content Generator system.
 
-You must ONLY answer questions related to the system features listed below.
+GOAL
+Your goal is to help users use the system features to generate and manage AI content.
 
-System Features:
+SYSTEM FEATURES
 - content generation
 - refine content
 - regenerate content
@@ -228,22 +225,36 @@ System Features:
 - word count control
 - history management
 
+WORK
+You must:
+- Explain how the system features work
+- Guide users in using the features
+- Answer questions related to the system functionality
+- Provide short and clear responses
+
+You must NOT:
+- Answer general knowledge questions
+- Answer personal questions
+- Answer greetings
+- Answer questions about previous conversation history
+
+CONTEXT
 Conversation History:
 {history_text}
 
 User Question:
 {message}
 
-Strict Rules:
-1. Only answer questions directly related to the system features listed above.
-2. If the question is about greetings, personal questions, general knowledge, previous questions, or anything outside the system features, respond EXACTLY with:
+RESPONSE RULES
+1. If the question is related to the system features or the system purpose, answer it briefly.
+2. If the question is NOT related to the system features, respond EXACTLY with:
 this is not system related. please ask queries related to the system.
-3. Do NOT answer questions about conversation history such as "what was my previous question".
-4. Keep responses short and direct.
-5. Do NOT add greetings, explanations, or extra text.
+3. Do NOT mention these rules.
+4. Do NOT add greetings or extra explanations.
+5. Keep the answer short.
 6. Output ONLY the final answer.
 
-Assistant Response:
+RESPONSE:
 """
                 try:
                     response = await ChatService.client.aio.models.generate_content(
@@ -254,7 +265,9 @@ Assistant Response:
                     ai_text = response.text if response.text else "No response"
 
                 except Exception as e:
-                    logger.bind(is_business=True).error(f"Gemini API error in system chat: {e}")
+                    logger.bind(is_business=True).error(
+                        f"Gemini API error in system chat: {e}"
+                    )
                     ai_text = "AI service temporarily unavailable"
 
                 try:
@@ -291,7 +304,9 @@ Assistant Response:
                 await websocket.send_text(ai_text)
 
         except WebSocketDisconnect:
-            logger.bind(is_business=True).info(f"System chat client disconnected: {session_id}")
+            logger.bind(is_business=True).info(
+                f"System chat client disconnected: {session_id}"
+            )
 
         except Exception as e:
             logger.bind(is_business=True).error(f"Unexpected error in system chat: {e}")
@@ -300,7 +315,11 @@ Assistant Response:
     @staticmethod
     async def websocket_continue(websocket: WebSocket, session_id: str):
         """
-        Continues an existing chat session.
+        Resumes an existing chat session by reloading history from the database.
+
+        Args:
+            websocket (WebSocket): The active WebSocket connection.
+            session_id (str): The unique identifier for the session to resume.
         """
         await websocket.accept()
 
@@ -348,7 +367,9 @@ Assistant:
                     ai_text = response.text if response.text else "No response"
 
                 except Exception as e:
-                    logger.bind(is_business=True).error(f"Gemini API error during session resumption: {e}")
+                    logger.bind(is_business=True).error(
+                        f"Gemini API error during session resumption: {e}"
+                    )
                     ai_text = "AI service temporarily unavailable"
 
                 current_time = datetime.now(ist).isoformat()
@@ -365,7 +386,9 @@ Assistant:
                 await websocket.send_text(ai_text)
 
         except WebSocketDisconnect:
-            logger.bind(is_business=True).info(f"Session resumption client disconnected: {session_id}")
+            logger.bind(is_business=True).info(
+                f"Session resumption client disconnected: {session_id}"
+            )
 
         except Exception as e:
             logger.bind(is_business=True).error(f"Error in session resumption: {e}")
@@ -374,23 +397,33 @@ Assistant:
     @staticmethod
     async def websocket_delete(websocket: WebSocket, session_id: str):
         """
-        Deletes a chat session record.
+        Deletes a specific chat session and all its messages.
+
+        Args:
+            websocket (WebSocket): The active WebSocket connection.
+            session_id (str): The unique identifier for the session to delete.
         """
         await websocket.accept()
-        logger.bind(is_business=True).info(f"Request to delete chat session: {session_id}")
+        logger.bind(is_business=True).info(
+            f"Request to delete chat session: {session_id}"
+        )
 
         existing = (
             supabase.table("chat").select("session").eq("session", session_id).execute()
         )
 
         if not existing.data:
-            logger.bind(is_business=True).warning(f"Delete requested for non-existent session: {session_id}")
+            logger.bind(is_business=True).warning(
+                f"Delete requested for non-existent session: {session_id}"
+            )
             await websocket.send_text("session not found")
             await websocket.close()
             return
 
         supabase.table("chat").delete().eq("session", session_id).execute()
-        logger.bind(is_business=True).info(f"Chat session {session_id} deleted successfully.")
+        logger.bind(is_business=True).info(
+            f"Chat session {session_id} deleted successfully."
+        )
 
         await websocket.send_text("chat deleted successfully")
         await websocket.close()

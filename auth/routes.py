@@ -29,8 +29,13 @@ async def signup(user: SignupRequest):
 @router.post("/verify-otp")
 async def verify(data: VerifyOTP):
     """
-    Verifies the OTP sent during signup.
-    This endpoint checks if the provided OTP matches the one stored in the database for the user.
+    Verifies the email OTP provided by the user during signup.
+
+    Args:
+        data (VerifyOTP): Object containing email and the 6-digit OTP.
+
+    Returns:
+        dict: A success message if verification passes.
     """
     return await AuthService.verify_otp(data)
 
@@ -38,8 +43,13 @@ async def verify(data: VerifyOTP):
 @router.put("/change-password")
 async def change_password(data: ChangePasswordRequest):
     """
-    Changes the password for an authenticated user.
-    This endpoint verifies the old password and updates it with the new provided password.
+    Changes the password for an existing user.
+
+    Args:
+        data (ChangePasswordRequest): Object containing email, old password, and new password.
+
+    Returns:
+        dict: A success message if the password was updated.
     """
     return await AuthService.change_password(data)
 
@@ -56,7 +66,12 @@ async def login(user: LoginRequest):
 @router.post("/verify-login-otp")
 async def verify_login_otp(data: VerifyOTP):
     """
-    Finalizes the login process by verifying the login OTP.
-    This endpoint returns the JWT access and refresh tokens upon successful verification.
+    Verifies the 2FA login OTP and issues authentication tokens.
+
+    Args:
+        data (VerifyOTP): Object containing email and the 6-digit login OTP.
+
+    Returns:
+        dict: Access and refresh tokens, along with user details.
     """
     return await AuthService.verify_login_otp(data)
